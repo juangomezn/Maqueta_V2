@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Electrónico</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Cajero Electrónico</h1>
+    </header>
+    <nav>
+        <button onclick="mostrarSeccion('crear-cuenta')">Crear Cuenta</button>
+        <button onclick="mostrarSeccion('consignar')">Consignar Dinero</button>
+        <button onclick="mostrarSeccion('retirar')">Retirar Dinero</button>
+        <button onclick="mostrarSeccion('pagar-servicio')">Pagar Servicios</button>
+        <button onclick="mostrarSeccion('movimientos')">Ver Movimientos</button>
+    </nav>
+
+    <div id="container">
+    <!-- Crear Cuenta -->
+    <section id="crear-cuenta" class="seccion oculta">
+        <h2>Crear Cuenta</h2>
+        <label for="nombre-titular">Nombre del Titular:</label>
+        <input type="text" id="nombre-titular">
+        <label for="numero-identificacion">Numero de Identificacion:</label>
+        <input type="number" id="numero-identificacion">
+        <label for="pin">PIN (4 dígitos):</label>
+        <input type="password" id="pin" maxlength="4">
+        <button onclick="crearCuenta()">Crear Cuenta</button>
+    </section>
+
+    <!-- Consignar -->
+    <section id="consignar" class="seccion oculta">
+        <h2>Consignar Dinero</h2>
+        <label for="numero-cuenta-consignar">Número de Cuenta:</label>
+        <input type="text" id="numero-cuenta-consignar">
+        <label for="monto-consignar">Monto a Consignar:</label>
+        <input type="number" id="monto-consignar">
+        <button onclick="consignarDinero()">Consignar</button>
+    </section>
+
+    <!-- Retirar -->
+    <section id="retirar" class="seccion oculta">
+        <h2>Retirar Dinero</h2>
+        <label for="numero-cuenta-retirar">Número de Cuenta:</label>
+        <input type="text" id="numero-cuenta-retirar">
+        <label for="monto-retirar">Monto a Retirar:</label>
+        <input type="number" id="monto-retirar">
+        <label for="pin-retirar">PIN:</label>
+        <input type="password" id="pin-retirar">
+        <button onclick="retirarDinero()">Retirar</button>
+    </section>
+
+    <!-- Pagar Servicios -->
+    <section id="pagar-servicio" class="seccion oculta">
+        <h2>Pagar Servicios</h2>
+        <label for="numero-cuenta-pagar">Número de Cuenta:</label>
+        <input type="text" id="numero-cuenta-pagar">
+        <label for="servicio">Servicio:</label>
+        <input type="text" id="servicio">
+        <label for="monto-servicio">Monto:</label>
+        <input type="number" id="monto-servicio">
+        <button onclick="pagarServicio()">Pagar</button>
+    </section>
+
+    <!-- Movimientos -->
+    <section id="movimientos" class="seccion oculta">
+        <h2>Movimientos de la Cuenta</h2>
+        <label for="numero-cuenta-movimientos">Número de Cuenta:</label>
+        <input type="text" id="numero-cuenta-movimientos">
+        <button onclick="mostrarMovimientos()">Mostrar Movimientos</button>
+        <ul id="lista-movimientos"></ul>
+    </section>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
