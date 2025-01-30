@@ -30,32 +30,36 @@ document.getElementById(id).classList.remove("oculta");
 
 // Crear una nueva cuenta bancaria
 function crearCuenta() {
-    console.log("Funcion Corriendo");
-    const titular = document.getElementById("nombre-titular").value;
-    const pin = document.getElementById("pin").value;
+  console.log("Función Corriendo");
 
-    if (!titular || saldo < 50 || !/^\d{4}$/.test(pin)) {
-    alert("Datos inválidos. Verifica los campos.");
-    return;
-    }
+  const titular = document.getElementById("nombre-titular").value;
+  const id = document.getElementById("id-titular").value;
+  const pin = document.getElementById("pin").value;
 
-    const numeroCuenta = Date.now().toString();
-    const nuevaCuenta = { numeroCuenta, titular, saldo, pin, movimientos: [] };
+  if (!titular || !id || !/^\d{4}$/.test(pin)) {
+      alert("Datos inválidos. Verifica los campos.");
+      return;
+  }
 
-    const tx = db.transaction(["cuentas"], "readwrite");
-    const store = tx.objectStore("cuentas");
-    store.add(nuevaCuenta);
+  const numeroCuenta = Date.now().toString();
+  const nuevaCuenta = { numeroCuenta, titular, id, saldo: 0, pin, movimientos: [] };
 
-    tx.oncomplete = function () { 
-    alert(`Cuenta creada con éxito. Número: ${numeroCuenta}`);
-    document.getElementById("nombre-titular").value = "";
-    document.getElementById("pin").value = "";
-    };
+  const tx = db.transaction(["cuentas"], "readwrite");
+  const store = tx.objectStore("cuentas");
+  store.add(nuevaCuenta);
 
-    tx.onerror = function () {
-    alert("Error al crear la cuenta");
-    };
+  tx.oncomplete = function () { 
+      alert(`Cuenta creada con éxito. Número: ${numeroCuenta}`);
+      document.getElementById("nombre-titular").value = "";
+      document.getElementById("id-titular").value = "";
+      document.getElementById("pin").value = "";
+  };
+
+  tx.onerror = function () {
+      alert("Error al crear la cuenta");
+  };
 }
+
 
 // Consignar dinero en una cuenta
 function consignarDinero() {
