@@ -49,7 +49,7 @@ function crearCuenta() {
   store.add(nuevaCuenta);
 
   tx.oncomplete = function () { 
-      alert(`Cuenta creada con éxito. Número: ${numeroCuenta}`);
+      alert(`Cuenta creada con éxito a Nombre de ${titular}, Numero de Identificacion: ${id} y Número de cuenta: ${numeroCuenta}`);
       document.getElementById("nombre-titular").value = "";
       document.getElementById("id-titular").value = "";
       document.getElementById("pin").value = "";
